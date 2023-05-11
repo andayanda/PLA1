@@ -28,8 +28,7 @@ extract($_SESSION['datos']);
 			<label for='email'>Email</label>
 			<input type="email" name="email" id='email' value='<?php echo $email ??null;?>'><br><br>
 			<label for='nota'>Nota exàmen</label>
-			<input type="number" name="nota" id='nota' value='<?php echo $nota ??null;?>'><br><br>
-			
+			<input type="number" name="nota" id='nota' value='<?php echo $nota ??null;?>'><br><br>			
 			<label for='mensaje'>Missatge</label>
 			<textarea name='mensaje' id='mensaje' cols='22' rows='5'></textarea><br><br>
 			<label></label>

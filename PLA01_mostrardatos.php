@@ -29,14 +29,11 @@ if ($nota=='') {
 	else {
 		if ($nota <0 || $nota >10) {
 
-			$errores .=  'Nota no permitida<br>';
-			
+			$errores .=  'Nota no permitida<br>';			
 		}
 	}
-
 if (!empty($errores)) {
-	throw new Exception($errores);
-	
+	throw new Exception($errores);	
 }
 // operativa que depende de la validación
 // evaluar la nota
@@ -47,9 +44,7 @@ entre 6 < 7 = bien
 entre 7 < 9 = notable
 entre 9 o mayor = excelente */
 if ($nota <5) {
-	$evaluacion = 'Supenso';
-	
-}
+	$evaluacion = 'Supenso';	}
 elseif ($nota >= 5 && $nota <6) {
 	$evaluacion = 'Aprobado';	
 	$class= "rojo";
@@ -62,17 +57,14 @@ elseif ($nota >= 7 && $nota <9) {
 	$evaluacion = 'Notable';	
 	$class= "verde";
 }
-else $evaluacion = 'Excelente';
-$class= "azul";
-
-} catch (Exception $error) {
+else $evaluacion = 'Excelente';}
+ catch (Exception $error) {
 	$mensajes = $error ->getMessage();
-} 
+} 	
 //compactar datos en la variable para conservarlos y recuperarlos fuera de este formulario
 	$datos = compact('nif','nom', 'cognom', 'nota', 'email');
 	//echo '<pre>';print_r($datos);echo '</pre>';
-	$_SESSION ['datos'] = $datos;
-	 
+	$_SESSION ['datos'] = $datos;	 
 ?>
 <!DOCTYPE html>
 <html>
@@ -90,9 +82,21 @@ $class= "azul";
 			<input type="text" name="cognom" placeholder="cognoms" disabled value='<?php echo $cognom;?>'><br><br>
 			<input type="text" name="qualificacio" placeholder="qualificació" disabled value='<?php echo $evaluacion ??null;?>'>
 			<!--aqui iran las cajitas <aside></aside>-->
-			
-			
-			<aside class="<?php echo $class ?>"></aside>
+			<?php 
+			for ($i = 0; $i <= $nota; $i++) {
+				if($i <5){
+					echo "<aside class= 'rojo'></aside>";
+				}
+			    if($i >= 5 && $i < 7){
+                    echo "<aside class= 'amarillo'></aside>";
+                }}
+				if($i >= 7 && $i < 9){
+                    echo "<aside class='verde'></aside>";
+                }
+				if($i >= 9){
+                    echo "<aside class='azul'></aside>";
+                }
+			?>			
 			
 			<br><br>
 			<input type="text" placeholder="email" disabled value='<?php echo $email ??null;?>'><br><br>
