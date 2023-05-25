@@ -18,7 +18,7 @@ extract($_SESSION['datos']);
 <body>
 	<div class='container'>
 		<h1 class='centrar'>PLA01: FORMULARI</h1>
-		<form method="post" action="PLA01_mostrardatos.php">
+		<form novalidate method="post" action="PLA01_mostrardatos.php">
 			<label for='nif'>Nif</label>
 			<input type="text" name="nif" id='nif' value='<?php echo $nif ??null;?>'><br><br>
 			<label for='nombre'>Nom</label>

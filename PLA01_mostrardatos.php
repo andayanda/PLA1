@@ -5,12 +5,12 @@ $nif = trim(isset($_POST['nif']))?$_POST['nif']:null;
 $nom = trim($_POST['nom']??null);
 $cognom = trim($_POST['cognom']?? null);
 $nota = trim($_POST['nota']?? null);
-$email = trim(filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL));
+// $email2 = trim(filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL));
+$email=trim($_POST['email']?? null);
 $errores = '';
 
 try {
-	//code...
-
+	
 if (empty($nif)) {
 	$errores .= 'nif obligatori<br>';	
 }
@@ -22,6 +22,9 @@ if (empty($cognom)) {
 }
 if (empty($email)) {
 	$errores .= 'email obligatori<br>';
+}
+if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+	throw new Exception('El format del correu es incorrecte');
 }
 if ($nota=='') {
 	$errores .=  'Nota obligatoria<br>';
@@ -44,7 +47,8 @@ entre 6 < 7 = bien
 entre 7 < 9 = notable
 entre 9 o mayor = excelente */
 if ($nota <5) {
-	$evaluacion = 'Supenso';	}
+	$evaluacion = 'Supenso';	
+}
 elseif ($nota >= 5 && $nota <6) {
 	$evaluacion = 'Aprobado';	
 	$class= "rojo";
@@ -57,8 +61,9 @@ elseif ($nota >= 7 && $nota <9) {
 	$evaluacion = 'Notable';	
 	$class= "verde";
 }
-else $evaluacion = 'Excelente';}
- catch (Exception $error) {
+else $evaluacion = 'Excelente';
+}
+catch (Exception $error) {
 	$mensajes = $error ->getMessage();
 } 	
 //compactar datos en la variable para conservarlos y recuperarlos fuera de este formulario
